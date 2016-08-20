@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="head :: head('hello admin')"></head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div th:include="starter :: wrapper"></div>
+
+<!-- jQuery 2.1.4 -->
+<script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<!-- Bootstrap 3.3.5 -->
+<script th:src="@{/webjars/bootstrap/3.3.4/bootstrap.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/webjars/adminlte/2.3.5/dist/js/app.min.js}"></script>
+<!-- Bootstrap Table 1.11.0 -->
+<script th:src="@{/webjars/bootstrap-table/1.11.0/bootstrap-table.min.js}"></script>
+<script th:src="@{/webjars/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js}"></script>
+<!-- custom js here -->
+</body>
+</html>

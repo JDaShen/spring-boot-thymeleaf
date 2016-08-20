@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="head :: head('hello admin')"></head>
+<body>
+<section class="content" th:fragment="page-content-table">
+    <!-- Your Page Content Here -->
+    <div class="row">
+        <div id="toolbar" class="btn-group">
+            <button id="plus" type="button" class="btn btn-default">
+                <i class="glyphicon glyphicon-plus"></i>
+            </button>
+            <button id="edit" type="button" class="btn btn-default">
+                <i class="glyphicon glyphicon-edit"></i>
+            </button>
+            <button id="minus" type="button" class="btn btn-default">
+                <i class="glyphicon glyphicon-minus"></i>
+            </button>
+        </div>
+        <div style="text-align:center;">
+						<span id="operate-success">
+    						设置成功
+    					</span>
+        </div>
+        <table id="table"></table>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-describedby="æäº¤ä¿®æ¹">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <form id="upload_form" enctype="multipart/form-data" method="POST">
+                    <div class="modal-body">
+                        <table class="table" id="modal-table">
+                            <thead>
+
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save
+                            changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section><!-- /.content -->
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 2.1.4 -->
+<script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+<!-- Bootstrap 3.3.5 -->
+<script th:src="@{/webjars/bootstrap/3.3.4/bootstrap.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/webjars/adminlte/2.3.5/dist/js/app.min.js}"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. Slimscroll is required when using the
+     fixed layout. -->
+<!-- Bootstrap Table 1.11.0 -->
+<script th:src="@{/webjars/bootstrap-table/1.11.0/bootstrap-table.min.js}"></script>
+<script th:src="@{/webjars/bootstrap-table/1.11.0/locale/bootstrap-table-zh-CN.min.js}"></script>
+</body>
+</html>

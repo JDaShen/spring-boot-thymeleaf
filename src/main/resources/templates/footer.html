@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head th:replace="head :: head('hello admin')"></head>
+<body>
+    <footer th:fragment="copy">
+        @ 2016
+    </footer>
+    <!-- Main Footer -->
+    <footer class="main-footer" th:fragment="copyright">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+            Anything you want
+        </div>
+        <!-- Default to the left -->
+        <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+    </footer>
+    <!-- REQUIRED JS SCRIPTS -->
+
+    <!-- jQuery 2.1.4 -->
+    <script th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script th:src="@{/webjars/bootstrap/3.3.4/bootstrap.min.js}"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/webjars/adminlte/2.3.5/dist/js/app.min.js}"></script>
+</body>
+</html>
