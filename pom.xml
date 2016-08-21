@@ -72,6 +72,23 @@
 		</dependency>
 
 		<!--web jars end-->
+		<!--
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<version>3.0.0.RELEASE</version>
+		</dependency>
+		-->
+
+		<!-- cannot use 3.0.0.RELEASE,the reason see here: -->
+		<!-- It appears indeed that "Thymeleaf Extras for Spring Security 4" version 3.0.0 isn't supported yet. -->
+		<!-- http://www.codegur.me/37270322/spring-boot-security-thymeleaf-iprocessordialect-class-missing -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+			<version>2.1.2.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8"></meta>
     <title>Title</title>
 </head>
 <body>
     <h1>Welcome!</h1>
+    Logged user: <span sec:authentication="name">Bob</span>
+    Roles: <span sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</span>
+    <div sec:authorize="hasRole('ROLE_ADMIN')">
+        This will only be displayed if authenticated user has role ROLE_ADMIN.
+    </div>
     <p>Click <a th:href="@{/hello}">here</a> to see a greeting</p>
 </body>
 </html>
