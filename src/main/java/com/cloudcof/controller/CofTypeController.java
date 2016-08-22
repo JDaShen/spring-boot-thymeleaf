@@ -1,4 +1,4 @@
-package com.cloudcof;
+package com.cloudcof.controller;
 
 import com.cloudcof.domain.CofType;
 import com.cloudcof.domain.CofTypeRepository;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -39,7 +40,18 @@ public class CofTypeController {
     @ResponseBody
     private Map<String, Object> post(@RequestParam MultipartFile[] cafImages, HttpServletRequest request, CofType cofType){
         Map<String, Object> responseMap = new LinkedHashMap<>();
-
+        if (cafImages.length>0){
+            int i=0;
+            ArrayList<String> imageDescs = new ArrayList<>();
+            for (MultipartFile cafImage : cafImages){
+                i++;
+                String contentType = cafImage.getContentType();
+                if(contentType.startsWith("image")){
+                    String realPath = request.getServletContext().getRealPath("/");
+                    
+                }
+            }
+        }
         return responseMap;
     }
 }
