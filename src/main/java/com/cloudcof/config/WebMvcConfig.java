@@ -14,16 +14,15 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         //super.addViewControllers(registry);
         registry.addViewController("/").setViewName("home");
-        registry.addViewController("/home").setViewName("/home");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/starter").setViewName("starter");
         registry.addViewController("/hello/test").setViewName("test");
-        registry.addViewController("/account-manage").setViewName("/subpages/account-manage");
-        registry.addViewController("/binding").setViewName("/subpages/binding");
-        registry.addViewController("/coffee-type").setViewName("/subpages/coffee-type");
-        registry.addViewController("/coffee-type-edit").setViewName("/subpages/coffee-type-edit");
-        registry.addViewController("/my-coffee-maker").setViewName("/subpages/my-coffee-maker");
-        registry.addViewController("/reports").setViewName("/subpages/reports");
+        registry.addViewController("/account-manage").setViewName("subpages/account-manage");
+        registry.addViewController("/binding").setViewName("subpages/binding");
+        registry.addViewController("/coffee-type").setViewName("subpages/coffee-type");
+        registry.addViewController("/coffee-type-edit").setViewName("subpages/coffee-type-edit");
+        registry.addViewController("/my-coffee-maker").setViewName("subpages/my-coffee-maker");
+        registry.addViewController("/reports").setViewName("subpages/reports");
     }
 }

@@ -1,8 +1,14 @@
 package com.cloudcof.controller;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import com.cloudcof.domain.CofType;
 import com.cloudcof.domain.CofTypeRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,6 +34,17 @@ import java.util.Map;
 public class CofTypeController {
     @Autowired
     private CofTypeRepository cofTypeRepository;
+
+    private static final Logger log = LoggerFactory.getLogger(FileUploadController.class);
+
+    public static final String ROOT="upload-dir";
+
+    private final ResourceLoader resourceLoader;
+
+    @Autowired
+    public CofTypeController(ResourceLoader resourceLoader){
+        this.resourceLoader = resourceLoader;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -53,5 +74,32 @@ public class CofTypeController {
             }
         }
         return responseMap;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/files")
+    public String handleFilesUpload(@RequestParam("file") MultipartFile[] files,
+                                    CofType cofType,
+                                    RedirectAttributes redirectAttributes){
+        String imgDesc = "";
+        if (files.length>1){
+            for (MultipartFile file : files){
+                if (!file.isEmpty()){
+                    try{
+                        String temp = System.currentTimeMillis()+file.getOriginalFilename();
+                        Files.copy(file.getInputStream(), Paths.get(ROOT, temp));
+                        imgDesc+=temp+",";
+//                        redirectAttributes.addFlashAttribute("message",
+//                                "You successfully uploaded " + file.getOriginalFilename() + "!");
+                    }catch (IOException |RuntimeException e){
+//                        redirectAttributes.addFlashAttribute("message", "Failured to upload " + file.getOriginalFilename() + " => " + e.getMessage());
+                    }
+                }else{
+//                    redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was empty");
+                }
+            }
+        }
+        cofType.setImgDesc(imgDesc);
+        cofTypeRepository.save(cofType);
+        return "redirect:/coffee-type-edit";
     }
 }

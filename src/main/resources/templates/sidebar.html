@@ -38,16 +38,16 @@
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><i class="fa fa-link"></i> <span>报表</span></a></li>
+            <li class="active"><a th:href="@{/reports}"><i class="fa fa-link"></i> <span>报表</span></a></li>
             <li class="treeview">
                 <a href="#"><i class="fa fa-link"></i> <span>机器管理</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                     <ul class="treeview-menu">
-                        <li><a href="#">我的咖啡机</a></li>
+                        <li><a th:href="@{/my-coffee-maker}">我的咖啡机</a></li>
                         <li><a th:href="@{/binding}">咖啡机绑定</a></li>
-                        <li><a href="#">咖啡种类</a></li>
+                        <li><a th:href="@{/coffee-type}">咖啡种类</a></li>
                     </ul>
                 </a>
             </li>
@@ -57,7 +57,7 @@
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                     <ul class="treeview-menu">
-                        <li><a href="#">账号管理</a></li>
+                        <li><a th:href="@{/account-manage}">账号管理</a></li>
                     </ul>
                 </a>
             </li>
