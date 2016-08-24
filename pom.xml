@@ -85,6 +85,18 @@
 			<artifactId>bootstrap-table</artifactId>
 			<version>1.11.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.webjars.npm</groupId>
+			<artifactId>quill</artifactId>
+			<version>1.0.0-beta.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>summernote</artifactId>
+			<version>0.8.1</version>
+		</dependency>
+
+
 
 		<!--web jars end-->
 		<!--
