@@ -1,10 +1,7 @@
 package com.cloudcof.domain;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by simon on 2016/8/22.
@@ -13,6 +10,7 @@ import javax.persistence.Table;
 @Table(name = "cl_cof_type")
 public class CofType {
     @Id
+    @GeneratedValue
     private Integer id;
 
     @Column(name = "cof_name")

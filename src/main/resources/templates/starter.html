@@ -4,7 +4,7 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head th:replace="head :: head('hello admin')"></head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper" th:fragment="wrapper">
@@ -15,7 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        <section th:replace="content-header :: contentHeader"></section>
+        <section th:replace="content-header :: contentHeader('这是page header', '这是小标题')"></section>
 
         <!-- Main content -->
         <section class="content" th:replace="content-table :: page-content-table"></section>

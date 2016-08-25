@@ -3,6 +3,8 @@ package com.cloudcof.controller;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import com.cloudcof.domain.Barista;
+import com.cloudcof.domain.BaristaRepository;
 import com.cloudcof.domain.CofType;
 import com.cloudcof.domain.CofTypeRepository;
 import org.slf4j.Logger;
@@ -10,11 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -34,6 +36,9 @@ import java.util.Map;
 public class CofTypeController {
     @Autowired
     private CofTypeRepository cofTypeRepository;
+
+    @Autowired
+    private BaristaRepository baristaRepository;
 
     private static final Logger log = LoggerFactory.getLogger(FileUploadController.class);
 
@@ -76,10 +81,21 @@ public class CofTypeController {
         return responseMap;
     }
 
+    /**
+     * 处理编辑咖啡种类
+     * @param files
+     * @param cofType
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST, value = "/files")
     public String handleFilesUpload(@RequestParam("file") MultipartFile[] files,
                                     CofType cofType,
                                     RedirectAttributes redirectAttributes){
+        //获得当前登录用户信息
+        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Barista barista = baristaRepository.findByName(userDetails.getUsername());
+        cofType.setOwnerId(barista.getId());
         String imgDesc = "";
         if (files.length>1){
             for (MultipartFile file : files){
@@ -87,7 +103,7 @@ public class CofTypeController {
                     try{
                         String temp = System.currentTimeMillis()+file.getOriginalFilename();
                         Files.copy(file.getInputStream(), Paths.get(ROOT, temp));
-                        imgDesc+=temp+",";
+                        imgDesc+=ROOT + "/" + temp+",";
 //                        redirectAttributes.addFlashAttribute("message",
 //                                "You successfully uploaded " + file.getOriginalFilename() + "!");
                     }catch (IOException |RuntimeException e){
@@ -101,5 +117,15 @@ public class CofTypeController {
         cofType.setImgDesc(imgDesc);
         cofTypeRepository.save(cofType);
         return "redirect:/coffee-type-edit";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/upload-dir/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<?> getFile(@PathVariable String filename){
+        try{
+            return ResponseEntity.ok(resourceLoader.getResource("file:" + Paths.get(ROOT, filename).toString()));
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 }

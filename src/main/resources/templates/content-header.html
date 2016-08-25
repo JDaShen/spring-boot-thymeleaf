@@ -4,11 +4,8 @@
 <head th:replace="head :: head('hello admin')"></head>
 <body>
 <!-- Content Header (Page header) -->
-<section class="content-header" th:fragment="contentHeader">
-    <h1>
-        Page Header
-        <small>Optional description</small>
-    </h1>
+<section class="content-header" th:fragment="contentHeader (title, smallTitle)">
+    <h1 style="display: inline;" th:text="${title}"></h1><small th:text="${smallTitle}"></small>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
         <li class="active">Here</li>
