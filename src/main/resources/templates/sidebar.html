@@ -61,6 +61,7 @@
                     </ul>
                 </a>
             </li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/app-version}"><i class="fa fa-link"></i> <span>APP版本管理</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

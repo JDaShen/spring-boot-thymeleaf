@@ -20,9 +20,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
-        auth.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN","USER")
-                .and().withUser("user").password("user").roles("USER")
-                .and().withUser("simon").password("123456").roles("USER");
+        auth.inMemoryAuthentication().withUser("admin").password("1").roles("ADMIN","USER")
+                .and().withUser("user").password("1").roles("USER")
+                .and().withUser("simon").password("1").roles("USER")
+                .and().withUser("jzz").password("1").roles("USER")
+                .and().withUser("feinin").password("1").roles("USER");
     }
 
     @Override

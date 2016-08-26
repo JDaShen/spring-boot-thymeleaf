@@ -9,4 +9,5 @@ public class ServerAppContext {
     public static final String BASE_URL = "http://" + IP + ":" + SERVER_PORT;
     public static final String IMAGE_ROOT = "upload-dir";
     public static final String REAL_IP = "139.129.26.153";
+    public static final String HTTP = "http://";
 }
