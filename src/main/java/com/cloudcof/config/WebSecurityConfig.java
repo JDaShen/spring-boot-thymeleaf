@@ -22,9 +22,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //super.configure(auth);
         auth.inMemoryAuthentication().withUser("admin").password("1").roles("ADMIN","USER")
                 .and().withUser("user").password("1").roles("USER")
-                .and().withUser("simon").password("1").roles("USER")
+                .and().withUser("simon").password("1").roles("USER","ADMIN")
                 .and().withUser("jzz").password("1").roles("USER")
-                .and().withUser("feinin").password("1").roles("USER");
+                .and().withUser("feinin").password("1").roles("USER","ADMIN");
     }
 
     @Override
@@ -33,7 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().fullyAuthenticated()
                 .and()
+                .rememberMe()
+                .and()
                 .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/console", true)
                 .failureUrl("/login?error").permitAll()
                 .and()
                 .logout().permitAll()

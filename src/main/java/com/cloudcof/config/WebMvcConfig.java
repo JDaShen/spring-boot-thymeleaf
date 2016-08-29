@@ -14,10 +14,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     public void addViewControllers(ViewControllerRegistry registry) {
         //super.addViewControllers(registry);
         //ViewName cannot start with "/"
-        registry.addViewController("/").setViewName("home");
         registry.addViewController("/login").setViewName("login");
         registry.addViewController("/hello").setViewName("hello");
-        registry.addViewController("/starter").setViewName("starter");
+        registry.addViewController("/console").setViewName("index");
         registry.addViewController("/hello/test").setViewName("test");
         registry.addViewController("/account-manage").setViewName("subpages/account-manage");
         registry.addViewController("/binding").setViewName("subpages/binding");

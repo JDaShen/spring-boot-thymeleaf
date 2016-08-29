@@ -81,7 +81,7 @@ public class AppVersionController {
         }else{
             redirectAttributes.addFlashAttribute("message", "Failed to upload " + file.getOriginalFilename() + " because it was empty");
         }
-        return "redirect:subpages/app-version";
+        return "redirect:/app-version";
     }
 
 }
